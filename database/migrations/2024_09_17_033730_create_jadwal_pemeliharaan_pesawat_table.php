@@ -22,6 +22,9 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('jadwal_pemeliharaan_pesawat');
+        Schema::create('jadwal_pemeliharaan_pesawat', function (Blueprint $table) {
+            $table->id('id_jadwal_pemeliharaan');
+            // kolom lainnya
+        });
     }
 };

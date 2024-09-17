@@ -6,21 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('jadwal_pemeliharaan_pesawat', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_jadwal_pemeliharaan');
+            $table->unsignedBigInteger('id_pesawat');
+            $table->date('jadwal_pemeliharaan');
+            $table->text('deskripsi');
+            $table->enum('status', ['scheduled', 'in_progress', 'completed', 'cancelled']);
             $table->timestamps();
+
+            $table->foreign('id_pesawat')->references('id_pesawat')->on('pesawat')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('jadwal_pemeliharaan_pesawat');
     }

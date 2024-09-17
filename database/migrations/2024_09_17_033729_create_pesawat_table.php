@@ -6,22 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
-        Schema::create('pesawat', function (Blueprint $table) {
-            $table->id();
+        Schema::create('dokumentasi_pesawat', function (Blueprint $table) {
+            $table->id('id_dokumentasi');
+            $table->unsignedBigInteger('id_teknisi');
+            $table->unsignedBigInteger('id_jadwal');
+            $table->date('jadwal_perbaikan');
+            $table->string('gambar_dokumentasi');
+            $table->text('laporan');
             $table->timestamps();
+
+            $table->foreign('id_teknisi')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_jadwal')->references('id_jadwal_pemeliharaan')->on('jadwal_pemeliharaan_pesawat')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('pesawat');
+        Schema::dropIfExists('dokumentasi_pesawat');
     }
 };
+

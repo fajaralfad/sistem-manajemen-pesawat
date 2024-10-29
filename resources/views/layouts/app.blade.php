@@ -5,9 +5,10 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    <div class="container">
+    @yield('navbar')
+    <div class="container-fluid">
         @yield('content')
     </div>
-    <script src="{{ asset('js/app.js') }}"></script>
+    @vite('resources/js/app.js')
 </body>
 </html>

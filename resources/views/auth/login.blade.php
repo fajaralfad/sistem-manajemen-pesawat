@@ -3,10 +3,19 @@
 @section('title', 'Login')
 
 @section('content')
+<style>
+    body {
+        background: url('{{ asset('images/airplane-bg.jpg') }}') no-repeat center center fixed;
+        background-size: cover;
+    }
+    .card {
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+</style>
 <div class="d-flex justify-content-center align-items-center vh-100">
     <div class="card" style="width: 24rem;">
         <div class="card-body">
-            <h1 class="card-title text-center">Login</h1>
+            <h1 class="card-title text-center"><b>Login</b> </h1>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="mb-3">

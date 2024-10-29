@@ -12,13 +12,13 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="#">Teknisi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="#">Pesawat</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link" href="#">Manager</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -55,7 +55,30 @@
         <div class="container mt-4">
             <h1>Welcome, Admin!</h1>
             <p>This is your dashboard where you can manage your application.</p>
-            <!-- Add more dashboard content here -->
+            <div class="row">
+                <div class="card m-4 text-white bg-primary" style="width: 23rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Active Technician</b></h5>
+                      
+                        <i data-feather="users" width="98" height="98">-</i>
+                       
+                    </div>
+                </div>
+                <div class="card m-4 text-white bg-success" style="width: 23rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Active Plane</b></h5>
+                        <i data-feather="send" width="98" height="98">-</i>
+
+                    </div>
+                </div>
+                <div class="card m-4 text-white bg-warning" style="width: 23rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Active Manager</b></h5>
+                        <i data-feather="user" width="98" height="98">-</i>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

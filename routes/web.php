@@ -20,8 +20,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/teknisi', function () {
         return view('admin.teknisi');
     })->name('admin.teknisi');
-    Route::get('admin/users', [UserController::class, 'index'])->name('admin.index');
+    Route::get('admin/index', [UserController::class, 'index'])->name('admin.index');
+    Route::get('admin/users', [UserController::class, 'list'])->name('admin.users');
     Route::post('admin/users', [UserController::class, 'store'])->name('admin.store');
+    Route::get('admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.edit'); // New route for editing
     Route::put('admin/users/{id}', [UserController::class, 'update'])->name('admin.update');
     Route::delete('admin/users/{id}', [UserController::class, 'destroy'])->name('admin.destroy');
 });

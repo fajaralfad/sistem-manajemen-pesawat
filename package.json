@@ -12,6 +12,9 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "feather-icons": "^4.29.2"
+        "datatables.net-bs5": "^2.1.8",
+        "datatables.net-dt": "^2.1.8",
+        "feather-icons": "^4.29.2",
+        "jquery": "^3.7.1"
     }
 }

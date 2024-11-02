@@ -1,9 +1,8 @@
-
 @extends('layouts.app')
 
-@section('title', 'Admin Dashboard')
+@section('title', 'Manager Dashboard')
 @section('navbar')
-<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body w-100" data-bs-theme="dark"">
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body w-100" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><b>Manager</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,27 +51,26 @@
         <div class="container mt-4">
             <h1>Welcome, Manager!</h1>
             <p>This is your dashboard where you can manage your application.</p>
-            <!-- Add more dashboard content here -->
             <div class="row">
                 <div class="card m-4 text-white bg-primary" style="width: 23rem;">
                     <div class="card-body">
                         <h5 class="card-title"><b>Active Technician</b></h5>
-                        <i data-feather="users" width="98" height="98">-</i>
-
+                        <i data-feather="users" width="98" height="98"></i>
+                        <h2>{{ $activeTechnicians }}</h2>
                     </div>
                 </div>
                 <div class="card m-4 text-white bg-success" style="width: 23rem;">
                     <div class="card-body">
                         <h5 class="card-title"><b>Active Plane</b></h5>
-                        <i data-feather="send" width="98" height="98">-</i>
-
+                        <i data-feather="send" width="98" height="98"></i>
+                        <!-- Add the active plane count here if needed -->
                     </div>
                 </div>
                 <div class="card m-4 text-white bg-warning" style="width: 23rem;">
                     <div class="card-body">
                         <h5 class="card-title"><b>Active Plane Schedule</b></h5>
-                        <i data-feather="book-open" width="98" height="98">-</i>
-                        
+                        <i data-feather="book-open" width="98" height="98"></i>
+                        <!-- Add the active plane schedule count here if needed -->
                     </div>
                 </div>
             </div>

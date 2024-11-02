@@ -37,6 +37,10 @@ Route::middleware(['auth', 'role:manager'])->group(function () {
     })->name('manager.dashboard');
 });
 
+Route::middleware(['auth', 'role:manager'])->group(function () {
+    Route::get('manager/dashboard', [DashboardController::class, 'managerDashboard'])->name('manager.dashboard');
+});
+
 // Role-based routes for Teknisi
 Route::middleware(['auth', 'role:teknisi'])->group(function () {
     Route::get('teknisi/dashboard', function () {

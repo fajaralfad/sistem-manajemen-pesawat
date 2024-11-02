@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+
+class DashboardController extends Controller
+{
+    public function index()
+    {
+        $activeTechnicians = User::where('role', 'teknisi')->count();
+        $activeManagers = User::where('role', 'manager')->count();
+
+        return view('admin.dashboard', compact('activeTechnicians', 'activeManagers'));
+    }
+}

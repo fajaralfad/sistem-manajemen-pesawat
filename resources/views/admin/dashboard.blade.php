@@ -1,9 +1,8 @@
-
 @extends('layouts.app')
 
 @section('title', 'Admin Dashboard')
 @section('navbar')
-<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body w-100" data-bs-theme="dark"">
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body w-100" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><b>Admin</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,16 +47,15 @@
                 <div class="card m-4 text-white bg-primary" style="width: 23rem;">
                     <div class="card-body">
                         <h5 class="card-title"><b>Active Technician</b></h5>
-                      
-                        <i data-feather="users" width="98" height="98">-</i>
-                       
+                        <i data-feather="users" width="98" height="98"></i>
+                        <h3>{{ $activeTechnicians }}</h3>
                     </div>
                 </div>
                 <div class="card m-4 text-white bg-warning" style="width: 23rem;">
                     <div class="card-body">
                         <h5 class="card-title"><b>Active Manager</b></h5>
-                        <i data-feather="user" width="98" height="98">-</i>
-
+                        <i data-feather="user" width="98" height="98"></i>
+                        <h3>{{ $activeManagers }}</h3>
                     </div>
                 </div>
             </div>

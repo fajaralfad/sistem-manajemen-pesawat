@@ -1,6 +1,8 @@
 <?php
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\DashboardAdminController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -14,9 +16,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Role-based routes
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('admin/dashboard', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
     Route::get('admin/teknisi', function () {
         return view('admin.teknisi');
     })->name('admin.teknisi');

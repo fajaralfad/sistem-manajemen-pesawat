@@ -27,7 +27,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('index', [UserController::class, 'index'])->name('index');
     
     // Pesawat management for admin
-    Route::get('pesawat', [PesawatController::class, 'index'])->name('pesawat');
+    Route::get('pesawat', [PesawatController::class, 'index'])->name('pesawat.index');
+    Route::post('pesawat', [PesawatController::class, 'store'])->name('pesawat.store');
+    Route::get('pesawat/{id}', [PesawatController::class, 'show'])->name('pesawat.show');
+    Route::get('pesawat/{id}/edit', [PesawatController::class, 'edit'])->name('pesawat.edit');
+    Route::put('pesawat/{id}', [PesawatController::class, 'update'])->name('pesawat.update');
+    Route::delete('pesawat/{id}', [PesawatController::class, 'destroy'])->name('pesawat.destroy');
+
     
     // User management
     Route::get('users', [UserController::class, 'list'])->name('users');

@@ -13,7 +13,7 @@
     <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addPesawatModal">Tambah Pesawat</button>
 
     <!-- Tabel Pesawat -->
-    <table class="table table-bordered">
+    <table id="usersTable" class="table table-bordered">
         <thead>
             <tr>
                 <th>No Registrasi</th>
@@ -22,6 +22,7 @@
                 <th>Tipe Pesawat</th>
                 <th>Jenis Pesawat</th>
                 <th>Kapasitas Penumpang</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -30,11 +31,25 @@
                 <td>{{ $pesawat->no_registrasi }}</td>
                 <td>{{ $pesawat->nama_maskapai }}</td>
                 <td>
-                    <img src="{{ asset($pesawat->gambar_maskapai) }}" alt="Gambar Maskapai" width="80">
+                    <img src="{{ asset('storage/' . $pesawat->gambar_maskapai) }}" alt="Gambar Maskapai" width="80">
                 </td>
                 <td>{{ $pesawat->tipe_pesawat }}</td>
                 <td>{{ $pesawat->jenis_pesawat }}</td>
                 <td>{{ $pesawat->kapasitas_penumpang }}</td>
+                <td>
+                    <!-- View button -->
+                    <a href="{{ route('pesawat.store', $pesawat->id) }}" class="btn btn-info btn-sm">View</a>
+
+                    <!-- Edit button -->
+                    <button class="btn btn-warning btn-sm" onclick="openEditModal({{ $pesawat }})">Edit</button>
+
+                    <!-- Delete form -->
+                    <form action="{{ route('admin.pesawat.destroy', ['id' => $pesawat->id]) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>
@@ -109,4 +124,90 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Edit Pesawat -->
+<div class="modal fade" id="editPesawatModal" tabindex="-1" aria-labelledby="editPesawatLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="editPesawatForm" method="POST" action="" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPesawatLabel">Edit Pesawat</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- No Registrasi -->
+                    <div class="mb-3">
+                        <label for="edit_no_registrasi" class="form-label">No Registrasi</label>
+                        <input type="text" name="no_registrasi" id="edit_no_registrasi" class="form-control" required>
+                    </div>
+
+                    <!-- Nama Maskapai -->
+                    <div class="mb-3">
+                        <label for="edit_nama_maskapai" class="form-label">Nama Maskapai</label>
+                        <input type="text" name="nama_maskapai" id="edit_nama_maskapai" class="form-control" required>
+                    </div>
+
+                    <!-- Gambar Maskapai -->
+                    <div class="mb-3">
+                        <label for="edit_gambar_maskapai" class="form-label">Gambar Maskapai</label>
+                        <input type="file" name="gambar_maskapai" id="edit_gambar_maskapai" class="form-control" accept="image/*">
+                    </div>
+
+                    <!-- Tipe Pesawat -->
+                    <div class="mb-3">
+                        <label for="edit_tipe_pesawat" class="form-label">Tipe Pesawat</label>
+                        <select name="tipe_pesawat" id="edit_tipe_pesawat" class="form-select" required>
+                            <option value="" disabled selected>Pilih Tipe Pesawat</option>
+                            <option value="Boeing 737">Boeing 737</option>
+                            <option value="Airbus A320">Airbus A320</option>
+                            <option value="Boeing 747">Boeing 747</option>
+                            <option value="Embraer E190">Embraer E190</option>
+                            <option value="Bombardier CRJ700">Bombardier CRJ700</option>
+                        </select>
+                    </div>
+
+                    <!-- Jenis Pesawat -->
+                    <div class="mb-3">
+                        <label for="edit_jenis_pesawat" class="form-label">Jenis Pesawat</label>
+                        <select name="jenis_pesawat" id="edit_jenis_pesawat" class="form-select" required>
+                            <option value="" disabled selected>Pilih Jenis Pesawat</option>
+                            <option value="Penumpang">Penumpang</option>
+                            <option value="Kargo">Kargo</option>
+                            <option value="Pribadi">Pribadi</option>
+                        </select>
+                    </div>
+
+                    <!-- Kapasitas Penumpang -->
+                    <div class="mb-3">
+                        <label for="edit_kapasitas_penumpang" class="form-label">Kapasitas Penumpang</label>
+                        <input type="number" name="kapasitas_penumpang" id="edit_kapasitas_penumpang" class="form-control" min="1" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to open the edit modal and populate it with pesawat data
+    function openEditModal(pesawat) {
+        const form = document.getElementById('editPesawatForm');
+        form.action = `/pesawat/${pesawat.id}`;
+        form.querySelector('#edit_no_registrasi').value = pesawat.no_registrasi;
+        form.querySelector('#edit_nama_maskapai').value = pesawat.nama_maskapai;
+        form.querySelector('#edit_tipe_pesawat').value = pesawat.tipe_pesawat;
+        form.querySelector('#edit_jenis_pesawat').value = pesawat.jenis_pesawat;
+        form.querySelector('#edit_kapasitas_penumpang').value = pesawat.kapasitas_penumpang;
+
+        const modal = new bootstrap.Modal(document.getElementById('editPesawatModal'));
+        modal.show();
+    }
+</script>
 @endsection

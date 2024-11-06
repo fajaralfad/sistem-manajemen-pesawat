@@ -11,6 +11,8 @@ class Pesawat extends Model
 
     protected $table = 'pesawat';
 
+    protected $primaryKey = 'id_pesawat';
+
     protected $fillable = [
         'no_registrasi',
         'nama_maskapai',
@@ -20,5 +22,4 @@ class Pesawat extends Model
         'kapasitas_penumpang',
     ];
 
-    // Jika perlu menambahkan fungsi-fungsi khusus di model ini, bisa tambahkan di sini
 }

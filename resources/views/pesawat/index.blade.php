@@ -16,6 +16,7 @@
     <table id="usersTable" class="table table-bordered">
         <thead>
             <tr>
+                
                 <th>No Registrasi</th>
                 <th>Nama Maskapai</th>
                 <th>Gambar Maskapai</th>
@@ -44,7 +45,7 @@
                     <button class="btn btn-warning btn-sm" onclick="openEditModal({{ $pesawat }})">Edit</button>
 
                     <!-- Delete form -->
-                    <form action="{{ route('admin.pesawat.destroy', ['id' => $pesawat->id]) }}" method="POST" style="display:inline;">
+                    <form action="{{ route('admin.pesawat.destroy',  $pesawat->id_pesawat) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>

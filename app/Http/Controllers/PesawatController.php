@@ -52,24 +52,24 @@ class PesawatController extends Controller
     }
 
     // Menampilkan detail pesawat
-    public function show($id)
+    public function show($id_pesawat)
     {
-        $pesawat = Pesawat::findOrFail($id);
+        $pesawat = Pesawat::findOrFail($id_pesawat);
         return view('pesawat.show', compact('pesawat'));
     }
 
     // Menampilkan form edit pesawat
-    public function edit($id)
+    public function edit($id_pesawat)
     {
-        $pesawat = Pesawat::findOrFail($id);
+        $pesawat = Pesawat::findOrFail($id_pesawat);
         return response()->json($pesawat);
     }
 
     // Mengupdate data pesawat
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_pesawat)
     {
         $request->validate([
-            'no_registrasi' => 'required|string|max:255|unique:pesawat,no_registrasi,' . $id,
+            'no_registrasi' => 'required|string|max:255|unique:pesawat,no_registrasi,' . $id_pesawat,
             'nama_maskapai' => 'required|string|max:255',
             'gambar_maskapai' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'tipe_pesawat' => 'required|string|max:255',
@@ -77,7 +77,7 @@ class PesawatController extends Controller
             'kapasitas_penumpang' => 'required|integer|min:1',
         ]);
 
-        $pesawat = Pesawat::findOrFail($id);
+        $pesawat = Pesawat::findOrFail($id_pesawat);
 
         // Update gambar jika ada file baru yang diupload
         if ($request->hasFile('gambar_maskapai')) {
@@ -105,9 +105,9 @@ class PesawatController extends Controller
     }
 
     // Menghapus data pesawat
-    public function destroy($id)
+    public function destroy($id_pesawat)
     {
-        $pesawat = Pesawat::findOrFail($id);
+        $pesawat = Pesawat::where('id_pesawat', $id_pesawat)->firstOrFail();
 
         // Hapus gambar dari storage
         if ($pesawat->gambar_maskapai) {

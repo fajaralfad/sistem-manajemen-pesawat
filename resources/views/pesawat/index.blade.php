@@ -91,14 +91,7 @@
                     <!-- Tipe Pesawat -->
                     <div class="mb-3">
                         <label for="tipe_pesawat" class="form-label">Tipe Pesawat</label>
-                        <select name="tipe_pesawat" class="form-select" required>
-                            <option value="" disabled selected>Pilih Tipe Pesawat</option>
-                            <option value="Boeing 737">Boeing 737</option>
-                            <option value="Airbus A320">Airbus A320</option>
-                            <option value="Boeing 747">Boeing 747</option>
-                            <option value="Embraer E190">Embraer E190</option>
-                            <option value="Bombardier CRJ700">Bombardier CRJ700</option>
-                        </select>
+                        <input type="text" name="tipe_pesawat" class="form-control">
                     </div>
 
                     <!-- Jenis Pesawat -->
@@ -129,74 +122,6 @@
 </div>
 
 <!-- Modal Edit Pesawat -->
-<div class="modal fade" id="editPesawatModal" tabindex="-1" aria-labelledby="editPesawatLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form id="editPesawatForm" method="POST" action="" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editPesawatLabel">Edit Pesawat</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- No Registrasi -->
-                    <div class="mb-3">
-                        <label for="edit_no_registrasi" class="form-label">No Registrasi</label>
-                        <input type="text" name="no_registrasi" id="edit_no_registrasi" class="form-control" required>
-                    </div>
-
-                    <!-- Nama Maskapai -->
-                    <div class="mb-3">
-                        <label for="edit_nama_maskapai" class="form-label">Nama Maskapai</label>
-                        <input type="text" name="nama_maskapai" id="edit_nama_maskapai" class="form-control" required>
-                    </div>
-
-                    <!-- Gambar Maskapai -->
-                    <div class="mb-3">
-                        <label for="edit_gambar_maskapai" class="form-label">Gambar Maskapai</label>
-                        <input type="file" name="gambar_maskapai" id="edit_gambar_maskapai" class="form-control" accept="image/*">
-                    </div>
-
-                    <!-- Tipe Pesawat -->
-                    <div class="mb-3">
-                        <label for="edit_tipe_pesawat" class="form-label">Tipe Pesawat</label>
-                        <select name="tipe_pesawat" id="edit_tipe_pesawat" class="form-select" required>
-                            <option value="" disabled selected>Pilih Tipe Pesawat</option>
-                            <option value="Boeing 737">Boeing 737</option>
-                            <option value="Airbus A320">Airbus A320</option>
-                            <option value="Boeing 747">Boeing 747</option>
-                            <option value="Embraer E190">Embraer E190</option>
-                            <option value="Bombardier CRJ700">Bombardier CRJ700</option>
-                        </select>
-                    </div>
-
-                    <!-- Jenis Pesawat -->
-                    <div class="mb-3">
-                        <label for="edit_jenis_pesawat" class="form-label">Jenis Pesawat</label>
-                        <select name="jenis_pesawat" id="edit_jenis_pesawat" class="form-select" required>
-                            <option value="" disabled selected>Pilih Jenis Pesawat</option>
-                            <option value="Penumpang">Penumpang</option>
-                            <option value="Kargo">Kargo</option>
-                            <option value="Pribadi">Pribadi</option>
-                        </select>
-                    </div>
-
-                    <!-- Kapasitas Penumpang -->
-                    <div class="mb-3">
-                        <label for="edit_kapasitas_penumpang" class="form-label">Kapasitas Penumpang</label>
-                        <input type="number" name="kapasitas_penumpang" id="edit_kapasitas_penumpang" class="form-control" min="1" required>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <script>
     // Function to open the edit modal and populate it with pesawat data

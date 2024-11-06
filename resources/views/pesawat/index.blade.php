@@ -16,7 +16,7 @@
     <table id="usersTable" class="table table-bordered">
         <thead>
             <tr>
-                
+                <th>ID Pesawat</th>
                 <th>No Registrasi</th>
                 <th>Nama Maskapai</th>
                 <th>Gambar Maskapai</th>
@@ -29,6 +29,7 @@
         <tbody>
             @foreach($pesawatList as $pesawat)
             <tr>
+                <td>{{ $pesawat->id_pesawat }}</td>
                 <td>{{ $pesawat->no_registrasi }}</td>
                 <td>{{ $pesawat->nama_maskapai }}</td>
                 <td>
@@ -38,14 +39,14 @@
                 <td>{{ $pesawat->jenis_pesawat }}</td>
                 <td>{{ $pesawat->kapasitas_penumpang }}</td>
                 <td>
-                    <!-- View button -->
-                    <a href="{{ route('pesawat.store', $pesawat->id) }}" class="btn btn-info btn-sm">View</a>
+                    <!-- View button
+                    <a href="" class="btn btn-info btn-sm">View</a> -->
 
                     <!-- Edit button -->
                     <button class="btn btn-warning btn-sm" onclick="openEditModal({{ $pesawat }})">Edit</button>
 
                     <!-- Delete form -->
-                    <form action="{{ route('admin.pesawat.destroy',  $pesawat->id_pesawat) }}" method="POST" style="display:inline;">
+                    <form action="{{ route('admin.pesawat.destroy', $pesawat->id_pesawat) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
@@ -197,18 +198,22 @@
 </div>
 
 <script>
-    // Function to open the edit modal and populate it with pesawat data
-    function openEditModal(pesawat) {
-        const form = document.getElementById('editPesawatForm');
-        form.action = `/pesawat/${pesawat.id}`;
-        form.querySelector('#edit_no_registrasi').value = pesawat.no_registrasi;
-        form.querySelector('#edit_nama_maskapai').value = pesawat.nama_maskapai;
-        form.querySelector('#edit_tipe_pesawat').value = pesawat.tipe_pesawat;
-        form.querySelector('#edit_jenis_pesawat').value = pesawat.jenis_pesawat;
-        form.querySelector('#edit_kapasitas_penumpang').value = pesawat.kapasitas_penumpang;
+    document.addEventListener('DOMContentLoaded', function () {
+        // Function to open the edit modal and populate it with pesawat data
+        window.openEditModal = function(pesawat) {
+            // Parse JSON if needed or use directly if passed as object
+            const form = document.getElementById('editPesawatForm');
+            form.action = `/admin/pesawat/${pesawat.id_pesawat}`;
+            form.querySelector('#edit_no_registrasi').value = pesawat.no_registrasi;
+            form.querySelector('#edit_nama_maskapai').value = pesawat.nama_maskapai;
+            form.querySelector('#edit_tipe_pesawat').value = pesawat.tipe_pesawat;
+            form.querySelector('#edit_jenis_pesawat').value = pesawat.jenis_pesawat;
+            form.querySelector('#edit_kapasitas_penumpang').value = pesawat.kapasitas_penumpang;
 
-        const modal = new bootstrap.Modal(document.getElementById('editPesawatModal'));
-        modal.show();
-    }
+            const modal = new bootstrap.Modal(document.getElementById('editPesawatModal'));
+            modal.show();
+        };
+    });
 </script>
+
 @endsection

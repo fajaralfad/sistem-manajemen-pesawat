@@ -3,7 +3,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './bootstrap';
 import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css';
 import 'datatables.net-bs5';
-
+// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+// import DataTable from 'datatables.net-bs5';
 // Import jQuery and DataTables
 import $ from 'jquery';
 import 'datatables.net';

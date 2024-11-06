@@ -58,18 +58,11 @@ class PesawatController extends Controller
         return view('pesawat.show', compact('pesawat'));
     }
 
-    // Menampilkan form edit pesawat
-    public function edit($id_pesawat)
-    {
-        $pesawat = Pesawat::findOrFail($id_pesawat);
-        return response()->json($pesawat);
-    }
-
     // Mengupdate data pesawat
     public function update(Request $request, $id_pesawat)
     {
         $request->validate([
-            'no_registrasi' => 'required|string|max:255|unique:pesawat,no_registrasi,' . $id_pesawat,
+            'no_registrasi' => 'required|string|max:255|unique:pesawat,no_registrasi,' . $id_pesawat . ',id_pesawat',
             'nama_maskapai' => 'required|string|max:255',
             'gambar_maskapai' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'tipe_pesawat' => 'required|string|max:255',
@@ -103,6 +96,13 @@ class PesawatController extends Controller
 
         return redirect()->route('pesawat.index')->with('success', 'Pesawat berhasil diupdate');
     }
+
+    public function edit($id_pesawat)
+    {
+        $pesawat = Pesawat::findOrFail($id_pesawat);
+        return view('pesawat.edit', compact('pesawat'));
+    }
+
 
     // Menghapus data pesawat
     public function destroy($id_pesawat)

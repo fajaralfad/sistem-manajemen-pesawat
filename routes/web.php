@@ -30,8 +30,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('pesawat', [PesawatController::class, 'index'])->name('index');
     Route::post('pesawat', [PesawatController::class, 'store'])->name('store');
     Route::get('pesawat/{id}', [PesawatController::class, 'show'])->name('show');
-    Route::get('pesawat/{id}/edit', [PesawatController::class, 'edit'])->name('edit');
-    Route::put('pesawat/{id}', [PesawatController::class, 'update'])->name('update');
+    Route::get('pesawat/{id}/edit', [PesawatController::class, 'edit'])->name('pesawat.edit');
+    Route::put('pesawat/{id}', [PesawatController::class, 'update'])->name('pesawat.update');
     Route::delete('pesawat/{id}', [PesawatController::class, 'destroy'])->name('pesawat.destroy');
 
     

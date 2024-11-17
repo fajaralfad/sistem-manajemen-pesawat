@@ -18,7 +18,7 @@
                     {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.profile.edit') }}">Edit Profile</a></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

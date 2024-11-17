@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController ;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PesawatController;
 use App\Http\Controllers\JadwalPemeliharaanController;
-
 use Illuminate\Support\Facades\Route;
 
 // Redirect root to login
@@ -23,6 +23,9 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Routes for Admin
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/edit-profile', [AdminController::class, 'editProfile'])->name('profile.edit');
+    Route::post('/update-profile', [AdminController::class, 'updateProfile'])->name('profile.update');
+
     Route::get('dashboard', [DashboardController::class, 'adminDashboard'])->name('dashboard');
     Route::get('teknisi', function () {
         return view('admin.teknisi');

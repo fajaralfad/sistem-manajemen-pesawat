@@ -21,5 +21,9 @@ class Pesawat extends Model
         'jenis_pesawat',
         'kapasitas_penumpang',
     ];
+    public function jadwalPemeliharaan()
+    {
+        return $this->hasMany(JadwalPemeliharaanPesawat::class, 'id_pesawat', 'id_pesawat');
+    }
 
 }

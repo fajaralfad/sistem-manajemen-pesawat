@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PesawatController;
+use App\Http\Controllers\JadwalPemeliharaanController;
 use Illuminate\Support\Facades\Route;
 
 // Redirect root to login
@@ -43,9 +44,20 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::delete('users/{id}', [UserController::class, 'destroy'])->name('destroy');
 });
 
-// Routes for Manager
 Route::middleware(['auth', 'role:manager'])->prefix('manager')->name('manager.')->group(function () {
+    // Dashboard for Manager
     Route::get('dashboard', [DashboardController::class, 'managerDashboard'])->name('dashboard');
+
+    // Jadwal Pemeliharaan routes
+    Route::prefix('jadwal')->name('jadwal.')->group(function () {
+        Route::get('/', [JadwalPemeliharaanController::class, 'index'])->name('index'); // List semua jadwal
+        Route::get('/create', [JadwalPemeliharaanController::class, 'create'])->name('create'); // Form tambah jadwal baru
+        Route::post('/', [JadwalPemeliharaanController::class, 'store'])->name('store'); // Simpan jadwal baru
+        Route::get('/{id}', [JadwalPemeliharaanController::class, 'show'])->name('show'); // Detail jadwal tertentu
+        Route::get('/{id}/edit', [JadwalPemeliharaanController::class, 'edit'])->name('edit'); // Form edit jadwal
+        Route::put('/{id}', [JadwalPemeliharaanController::class, 'update'])->name('update'); // Proses update jadwal
+        Route::delete('/{id}', [JadwalPemeliharaanController::class, 'destroy'])->name('destroy'); // Hapus jadwal
+    });
 });
 
 // Routes for Teknisi

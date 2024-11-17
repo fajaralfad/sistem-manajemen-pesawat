@@ -87,10 +87,10 @@
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
                             <select name="status" id="status" class="form-select" required>
-                                <option value="scheduled">Penjadwalan</option>
-                                <option value="in_progress">Dalam progress</option>
-                                <option value="completed">Selesai</option>
-                                <option value="cancelled">Dibatalkan</option>
+                                <option value="scheduled">scheduled</option>
+                                <option value="in_progress">in_progress</option>
+                                <option value="completed">completed</option>
+                                <option value="cancelled">cancelled</option>
                             </select>
                         </div>
 

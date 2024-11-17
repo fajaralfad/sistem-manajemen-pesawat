@@ -62,9 +62,7 @@ Route::middleware(['auth', 'role:manager'])->prefix('manager')->name('manager.')
 
 // Routes for Teknisi
 Route::middleware(['auth', 'role:teknisi'])->prefix('teknisi')->name('teknisi.')->group(function () {
-    Route::get('dashboard', function () {
-        return view('teknisi.dashboard');
-    })->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'teknisiDashboard'])->name('dashboard');
 });
 
 // Pesawat routes (accessible for authenticated users with appropriate role)

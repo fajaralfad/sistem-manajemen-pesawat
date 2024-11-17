@@ -33,4 +33,12 @@ class DashboardController extends Controller
 
         return view('manager.dashboard', compact('activeTechnicians', 'activePlanes', 'activeSchedules'));
     }
+
+    public function teknisiDashboard()
+    {
+        // Hitung jumlah jadwal aktif
+        $activeSchedules = JadwalPemeliharaanPesawat::whereIn('status', ['scheduled', 'in_progress'])->count();
+
+        return view('teknisi.dashboard', compact('activeSchedules'));
+    }
 }

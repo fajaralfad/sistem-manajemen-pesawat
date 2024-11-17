@@ -126,13 +126,33 @@
                     <td>{{ $item->deskripsi }}</td>
                     <td class="text-capitalize">{{ $item->status }}</td>
                     <td>
-                        <a href="{{ route('manager.jadwal.show', $item->id_jadwal_pemeliharaan) }}" class="btn btn-sm btn-info">View</a>
-                        <a href="{{ route('manager.jadwal.edit', $item->id_jadwal_pemeliharaan) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <form action="{{ route('manager.jadwal.destroy', $item->id_jadwal_pemeliharaan) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </form>
+    <a href="{{ route('manager.jadwal.show', $item->id_jadwal_pemeliharaan) }}" class="btn btn-sm btn-info">View</a>
+    <a href="{{ route('manager.jadwal.edit', $item->id_jadwal_pemeliharaan) }}" class="btn btn-sm btn-warning">Edit</a>
+    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ $item->id_jadwal_pemeliharaan }}">Delete</button>
+
+    <!-- Modal Konfirmasi Hapus -->
+    <div class="modal fade" id="confirmDeleteModal{{ $item->id_jadwal_pemeliharaan }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel{{ $item->id_jadwal_pemeliharaan }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel{{ $item->id_jadwal_pemeliharaan }}">Konfirmasi Hapus</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin menghapus jadwal pemeliharaan dengan ID <b>{{ $item->id_jadwal_pemeliharaan }}</b> untuk pesawat <b>{{ $item->pesawat->nama_maskapai }}</b>?
+                    Data yang sudah dihapus tidak dapat dikembalikan.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <form action="{{ route('manager.jadwal.destroy', $item->id_jadwal_pemeliharaan) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 @endforeach

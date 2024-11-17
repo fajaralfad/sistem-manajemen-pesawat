@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PesawatController;
 use App\Http\Controllers\JadwalPemeliharaanController;
+
 use Illuminate\Support\Facades\Route;
 
 // Redirect root to login
@@ -47,6 +49,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 Route::middleware(['auth', 'role:manager'])->prefix('manager')->name('manager.')->group(function () {
     // Dashboard for Manager
     Route::get('dashboard', [DashboardController::class, 'managerDashboard'])->name('dashboard');
+    
+    Route::get('profile/edit', [ManagerController::class, 'editProfile'])->name('profile.edit');
+    Route::post('profile/update', [ManagerController::class, 'updateProfile'])->name('profile.update');
 
     // Jadwal Pemeliharaan routes
     Route::prefix('jadwal')->name('jadwal.')->group(function () {

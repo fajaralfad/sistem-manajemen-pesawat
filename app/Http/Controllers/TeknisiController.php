@@ -6,19 +6,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class TeknisiController extends Controller
 {
     /**
-     * Show the form for editing the admin profile.
+     * Show the form for editing the manager profile.
      */
     public function editProfile()
     {
         $user = Auth::user();
-        return view('admin.edit-profile', compact('user'));
+        return view('teknisi.edit-profile', compact('user'));
     }
 
     /**
-     * Update the admin profile.
+     * Update the manager profile.
      */
     public function updateProfile(Request $request)
     {
@@ -53,6 +53,7 @@ class AdminController extends Controller
         $user->save();
     
         return back()->with('success', 'Your profile has been updated successfully.');
-    }
+    }    
     
 }
+

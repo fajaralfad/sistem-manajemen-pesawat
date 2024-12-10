@@ -38,9 +38,7 @@
                 <td>{{ $pesawat->jenis_pesawat }}</td>
                 <td>{{ $pesawat->kapasitas_penumpang }}</td>
                 <td>
-    <!-- View button -->
-    <a href="{{ route('pesawat.store', $pesawat->id_pesawat) }}" class="btn btn-info btn-sm">View</a>
-
+                
     <!-- Edit button -->
     <a href="{{ route('admin.pesawat.edit', $pesawat->id_pesawat) }}" class="btn btn-warning btn-sm">Edit</a>
 

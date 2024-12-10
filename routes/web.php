@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController ;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\TeknisiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PesawatController;
@@ -23,8 +24,8 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Routes for Admin
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/edit-profile', [AdminController::class, 'editProfile'])->name('profile.edit');
-    Route::post('/update-profile', [AdminController::class, 'updateProfile'])->name('profile.update');
+    Route::get('profile/edit', [AdminController::class, 'editProfile'])->name('profile.edit');
+    Route::post('profile/update', [AdminController::class, 'updateProfile'])->name('profile.update');
 
     Route::get('dashboard', [DashboardController::class, 'adminDashboard'])->name('dashboard');
     Route::get('teknisi', function () {
@@ -71,6 +72,9 @@ Route::middleware(['auth', 'role:manager'])->prefix('manager')->name('manager.')
 // Routes for Teknisi
 Route::middleware(['auth', 'role:teknisi'])->prefix('teknisi')->name('teknisi.')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'teknisiDashboard'])->name('dashboard');
+
+    Route::get('profile/edit', [TeknisiController::class, 'editProfile'])->name('profile.edit');
+    Route::post('profile/update', [TeknisiController::class, 'updateProfile'])->name('profile.update');
 });
 
 // Pesawat routes (accessible for authenticated users with appropriate role)

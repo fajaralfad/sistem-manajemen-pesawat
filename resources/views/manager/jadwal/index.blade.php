@@ -85,7 +85,6 @@
                     <td>{{ $item->deskripsi }}</td>
                     <td class="text-capitalize">{{ $item->status }}</td>
                     <td>
-    <a href="{{ route('manager.jadwal.show', $item->id_jadwal_pemeliharaan) }}" class="btn btn-sm btn-info">View</a>
     <a href="{{ route('manager.jadwal.edit', $item->id_jadwal_pemeliharaan) }}" class="btn btn-sm btn-warning">Edit</a>
     <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ $item->id_jadwal_pemeliharaan }}">Delete</button>
 

@@ -65,7 +65,7 @@
 
     <!-- Tabel Jadwal Pemeliharaan -->
     <div class="table-responsive">
-        <table class="table table-hover table-bordered">
+        <table id="usersTable" class="table table-bordered">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>

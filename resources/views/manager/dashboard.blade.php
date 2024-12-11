@@ -7,16 +7,6 @@
 @endsection
 
 @section('content')
-<style>
-    body {
-        background: url('{{ asset('images/bg-dashboard.png') }}') no-repeat center center fixed;
-        background-size: cover;
-    }
-    .card {
-        background-color: rgba(255, 255, 255, 0.8);
-    }
-</style>
-
 <div class="d-flex">
     <div class="content w-100">
         <div class="container mt-4">

@@ -1,9 +1,8 @@
-
 @extends('layouts.app')
 
 @section('title', 'Admin Dashboard')
 @section('navbar')
-<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body w-100" data-bs-theme="dark"">
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body w-100" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><b>Teknisi</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,11 +12,13 @@
             <ul class="navbar-nav ms-auto">
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Upload Dokumentasi Pesawat</a>
+                    <!-- Link ke halaman upload dokumentasi -->
+                    <a class="nav-link" href="{{ route('upload-dokumentasi') }}">Upload Dokumentasi Pesawat</a>
                 </li>
+                
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ Auth::user()->name }}
+                        {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Edit Profile</a></li>

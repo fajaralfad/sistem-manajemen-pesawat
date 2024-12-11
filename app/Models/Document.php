@@ -14,8 +14,18 @@ class Document extends Model
 
     // Kolom yang dapat diisi (mass assignable)
     protected $fillable = [
-        'registration_number', 'file_path', 'status', 'report', 'aircraft_id', 
-        'technician_id', 'schedule_id', 'repair_schedule', 'image_path'
+        'id_dokumentasi',
+        'id_teknisi',
+        'id_jadwal',
+        'jadwal_perbaikan',
+        'waktu_perbaikan',
+        'jenis_perbaikan',
+        'lokasi_perbaikan',
+        'status_perbaikan',
+        'waktu_perbaikan',
+        'gambar_dokumentasi',
+        'kerusakan',
+        'laporan'
     ];
 
     // Jika ada relasi, misalnya ke model Technician atau Schedule

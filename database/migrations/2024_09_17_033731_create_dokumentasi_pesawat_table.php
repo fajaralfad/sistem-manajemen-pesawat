@@ -13,6 +13,10 @@ return new class extends Migration
             $table->unsignedBigInteger('id_teknisi');
             $table->unsignedBigInteger('id_jadwal');
             $table->date('jadwal_perbaikan');
+            $table->time('waktu_perbaikan');
+            $table->string('jenis_perbaikan');
+            $table->string('lokasi_perbaikan');
+            $table->string('status_perbaikan');
             $table->string('gambar_dokumentasi');
             $table->text('laporan');
             $table->timestamps();

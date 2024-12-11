@@ -45,7 +45,7 @@
 
     <!-- Delete button triggers modal -->
     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUserModal{{ $user->id }}">Delete</button>
-
+    
     <!-- Modal Konfirmasi Hapus -->
     <div class="modal fade" id="deleteUserModal{{ $user->id }}" tabindex="-1" aria-labelledby="deleteUserModalLabel{{ $user->id }}" aria-hidden="true">
         <div class="modal-dialog">

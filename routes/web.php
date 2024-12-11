@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PesawatController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JadwalPemeliharaanController;
+use App\Http\Controllers\DocumentController;
 
 // Redirect root to login
 Route::get('/', function () {
@@ -71,7 +73,7 @@ Route::middleware(['auth', 'role:manager'])->prefix('manager')->name('manager.')
 // Routes for Teknisi
 Route::middleware(['auth', 'role:teknisi'])->prefix('teknisi')->name('teknisi.')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'teknisiDashboard'])->name('dashboard');
-
+    Route::get('upload-dokumentasi', [DocumentController::class, 'create'])->name('upload-dokumentasi');
     Route::get('profile/edit', [TeknisiController::class, 'editProfile'])->name('profile.edit');
     Route::post('profile/update', [TeknisiController::class, 'updateProfile'])->name('profile.update');
 });

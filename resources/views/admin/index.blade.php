@@ -23,6 +23,7 @@
             <table id="usersTable" class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>No</th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
@@ -33,6 +34,7 @@
                 <tbody>
                     @foreach($users as $user)
                         <tr>
+                            <td>{{$loop->iteration}}</td>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>

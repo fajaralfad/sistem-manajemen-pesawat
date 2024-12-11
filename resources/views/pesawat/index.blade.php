@@ -22,7 +22,7 @@
                 <th>Gambar Maskapai</th>
                 <th>Tipe Pesawat</th>
                 <th>Jenis Pesawat</th>
-                <th>Kapasitas Penumpang</th>
+                <th>Kapasitas </th>
                 <th>Actions</th>
             </tr>
         </thead>

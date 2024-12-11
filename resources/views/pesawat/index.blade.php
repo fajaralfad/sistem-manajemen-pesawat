@@ -16,7 +16,7 @@
     <table id="usersTable" class="table table-bordered">
         <thead>
             <tr>
-                
+                <th>No</th>
                 <th>No Registrasi</th>
                 <th>Nama Maskapai</th>
                 <th>Gambar Maskapai</th>
@@ -29,6 +29,7 @@
         <tbody>
             @foreach($pesawatList as $pesawat)
             <tr>
+                <td>{{$loop->iteration}}</td>
                 <td>{{ $pesawat->no_registrasi }}</td>
                 <td>{{ $pesawat->nama_maskapai }}</td>
                 <td>
@@ -38,6 +39,7 @@
                 <td>{{ $pesawat->jenis_pesawat }}</td>
                 <td>{{ $pesawat->kapasitas_penumpang }}</td>
                 <td>
+                    
                 
     <!-- Edit button -->
     <a href="{{ route('admin.pesawat.edit', $pesawat->id_pesawat) }}" class="btn btn-warning btn-sm">Edit</a>

@@ -20,7 +20,14 @@ return new class extends Migration
             $table->foreign('id_teknisi')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_jadwal')->references('id_jadwal_pemeliharaan')->on('jadwal_pemeliharaan_pesawat')->onDelete('cascade');
         });
+        Schema::create('documents', function (Blueprint $table) {
+            $table->id();
+            $table->string('file_path'); // Menyimpan lokasi file
+            $table->unsignedBigInteger('aircraft_id'); // ID atau registrasi pesawat
+            $table->timestamps();
+        });
     }
+    
 
     public function down()
     {

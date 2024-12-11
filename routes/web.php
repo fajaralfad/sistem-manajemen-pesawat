@@ -7,7 +7,6 @@ use App\Http\Controllers\TeknisiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PesawatController;
-use App\Http\Controllers\JadwalPemeliharaanController;
 use Illuminate\Support\Facades\Route;
 
 // Redirect root to login
@@ -83,4 +82,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/pesawat', [PesawatController::class, 'index'])->name('pesawat.index');
     Route::post('/pesawat', [PesawatController::class, 'store'])->name('pesawat.store');
 });
+//route untuk halaman upload dkumentasi pesawat
+// Route untuk halaman upload dokumentasi pesawat
+Route::middleware('auth')->group(function () {
+    Route::get('/upload-dokumentasi', [DocumentController::class, 'create'])->name('upload-dokumentasi');
+    Route::post('/save-documentation', [DocumentController::class, 'store'])->name('save-documentation');
+});
+
+
+Route::post('/upload-dokumentasi', [DocumentController::class, 'store'])->name('document.store');
+Route::get('/daftar-dokumentasi', [DocumentController::class, 'index'])->name('daftar-dokumentasi');
+
+
 

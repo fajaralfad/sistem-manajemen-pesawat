@@ -37,6 +37,17 @@
                 <div class="modal-body">
                     <form action="{{ route('save-documentation') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+
+                        <div class="form-group mt-2">
+                            <label for="pesawat_id">Nama Pesawat:</label>
+                            <select class="form-control" id="pesawat_id" name="pesawat_id" required>
+                                <option value="" disabled selected>Pilih Nama Pesawat</option>
+                                @foreach($pesawatList as $pesawat)
+                                    <option value="{{ $pesawat->id_pesawat }}">{{ $pesawat->nama_maskapai }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-group mt-2">
                             <label for="jadwal_perbaikan">Jadwal perbaikan:</label>
                             <div class="row">
@@ -109,6 +120,7 @@
                 <tr>
                     <th>No.</th>
                     <th>Id Dokumentasi</th>
+                    <th>Nama Pesawat</th>
                     <th>Jadwal perbaikan</th>
                     <th>Waktu perbaikan</th>
                     <th>Lokasi perbaikan</th>
@@ -125,9 +137,10 @@
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{ $documentation->id_dokumentasi}}</td>
+                        <td>{{ $documentation->pesawat->nama_maskapai }}</td> 
                         <td>{{$documentation->jadwal_perbaikan}}</td>
                         <td>{{$documentation->waktu_perbaikan}}</td>
-                        <td>{{ $documentation->lokasi_perbaikan }}</td>
+                        <td>{{ $documentation->lokasiPerbaikan->lokasi }}</td>
                         <td>{{ $documentation->jenis_perbaikan }}</td>
                         <td><img src="{{ asset('storage/' . $documentation->gambar_dokumentasi) }}" alt="Gambar Dokumentasi" width="100"></td>
                         <td>{{ $documentation->kerusakan }}</td>

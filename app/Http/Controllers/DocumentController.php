@@ -7,7 +7,7 @@ use App\Models\Document;
 use App\Models\LokasiPerbaikan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\Pesawat;
 class DocumentController extends Controller
 {
     public function index()
@@ -21,7 +21,8 @@ class DocumentController extends Controller
     {
         $documentations = Document::all(); 
         $lokasiPerbaikanList = LokasiPerbaikan::all(); // Fetch all lokasi perbaikan
-        return view('teknisi.upload-dokumentasi', compact('documentations', 'lokasiPerbaikanList')); // Send data to the view
+        $pesawatList = Pesawat::all(); 
+        return view('teknisi.upload-dokumentasi', compact('documentations', 'lokasiPerbaikanList','pesawatList')); // Send data to the view
     }
 
     public function store(Request $request)
@@ -36,6 +37,7 @@ class DocumentController extends Controller
             'lokasi_perbaikan_id' => 'required|exists:lokasi_perbaikan,id',
             'status_perbaikan' => 'required|string',
             'laporan' => 'nullable|string',
+            'pesawat_id' => 'required|exists:pesawat,id_pesawat',
         ]);
 
         try {
@@ -58,6 +60,7 @@ class DocumentController extends Controller
                 'gambar_dokumentasi' => 'dokumentasi/' . $filename,
                 'kerusakan' => $request->kerusakan,
                 'laporan' => $request->laporan,
+                'pesawat_id' => $request->pesawat_id,
             ]);
             Log::info('Data saved to database');
 
@@ -72,7 +75,8 @@ class DocumentController extends Controller
     {
         $documentation = Document::findOrFail($id_dokumentasi);
         $lokasiPerbaikanList = LokasiPerbaikan::all();
-        return view('teknisi.edit-dokumentasi', compact('documentation', 'lokasiPerbaikanList'));
+        $pesawatList = Pesawat::all(); // Add this line
+        return view('teknisi.edit-dokumentasi', compact('documentation', 'lokasiPerbaikanList', 'pesawatList')); // Add pesawatList
     }
 
     public function update(Request $request, $id_dokumentasi)
@@ -87,6 +91,7 @@ class DocumentController extends Controller
             'lokasi_perbaikan_id' => 'required|exists:lokasi_perbaikan,id',
             'status_perbaikan' => 'required|string',
             'laporan' => 'nullable|string',
+            'pesawat_id' => 'required|exists:pesawat,id_pesawat',
         ]);
 
         try {
@@ -116,6 +121,7 @@ class DocumentController extends Controller
                 'status_perbaikan' => $request->status_perbaikan,
                 'kerusakan' => $request->kerusakan,
                 'laporan' => $request->laporan,
+                'pesawat_id' => $request->pesawat_id,
             ]);
             Log::info('Data updated in database');
 

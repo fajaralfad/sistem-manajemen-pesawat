@@ -8,20 +8,44 @@
 @section('content')
 <div class="container mt-4">
     <h1>Riwayat Teknisi</h1>
-    <div class="row">
-        @foreach($histories as $history)
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $history->technician->name }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ $history->plane->name }}</h6>
-                    <p class="card-text">Status: {{ $history->status }}</p>
-                    <p class="card-text">Tanggal Pengerjaan: {{ $history->work_date }}</p>
-                    <p class="card-text">{{ $history->description }}</p>
-                </div>
-            </div>
-        </div>
-        @endforeach
+    <div class="table-responsive">
+        <table id="usersTable" class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Id Dokumentasi</th>
+                    <th>Nama Pesawat</th>
+                    <th>Jadwal perbaikan</th>
+                    <th>Waktu perbaikan</th>
+                    <th>Lokasi perbaikan</th>
+                    <th>Jenis Perbaikan</th>
+                    <th>Gambar dokumentasi</th>
+                    <th>Kerusakan</th>
+                    <th>Status</th>
+                    <th>Laporan</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($documentations as $documentation)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{ $documentation->id_dokumentasi}}</td>
+                        <td>{{ $documentation->pesawat->nama_maskapai }}</td>
+                        <td>{{$documentation->jadwal_perbaikan}}</td>
+                        <td>{{$documentation->waktu_perbaikan}}</td>
+                        <td>{{ $documentation->lokasiPerbaikan->lokasi }}</td>
+                        <td>{{ $documentation->jenis_perbaikan }}</td>
+                        <td><img src="{{ asset('storage/' . $documentation->gambar_dokumentasi) }}" alt="Gambar Dokumentasi" width="100"></td>
+                        <td>{{ $documentation->kerusakan }}</td>
+                        <td>{{ $documentation->status_perbaikan }}</td>
+                        <td>{{ $documentation->laporan }}</td>
+                        
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
+</div>
 </div>
 @endsection

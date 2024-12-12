@@ -11,8 +11,7 @@ class LokasiPerbaikan extends Model
 
     protected $table = 'lokasi_perbaikan';
 
-    protected $fillable =[
-        'id',
+    protected $fillable = [
         'lokasi',
     ];
 }

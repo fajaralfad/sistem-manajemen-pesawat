@@ -26,9 +26,18 @@ class Document extends Model
         'waktu_perbaikan',
         'gambar_dokumentasi',
         'kerusakan',
-        'laporan'
+        'laporan',
+        'pesawat_id'
     ];
+    public function lokasiPerbaikan()
+    {
+        return $this->belongsTo(LokasiPerbaikan::class, 'lokasi_perbaikan_id');
+    }
 
+    public function pesawat()
+    {
+        return $this->belongsTo(Pesawat::class, 'pesawat_id'); // Add this relationship
+    }
     // Jika ada relasi, misalnya ke model Technician atau Schedule
     public function technician()
     {

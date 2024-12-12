@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -15,10 +16,26 @@ return new class extends Migration
             }
 
             // Add the new foreign key column
-            $table->unsignedBigInteger('lokasi_perbaikan_id')->after('waktu_perbaikan');
+            $table->unsignedBigInteger('lokasi_perbaikan_id')->after('waktu_perbaikan')->nullable();
 
             // Add the foreign key constraint
             $table->foreign('lokasi_perbaikan_id')->references('id')->on('lokasi_perbaikan')->onDelete('cascade');
+        });
+
+        // Ensure there is a default location
+        DB::table('lokasi_perbaikan')->insertOrIgnore([
+            'lokasi' => 'Default Location',
+        ]);
+
+        // Get the ID of the default location
+        $defaultLocationId = DB::table('lokasi_perbaikan')->where('lokasi', 'Default Location')->first()->id;
+
+        // Update existing rows to have the default location ID
+        DB::table('dokumentasi_pesawat')->update(['lokasi_perbaikan_id' => $defaultLocationId]);
+
+        // Make the column non-nullable
+        Schema::table('dokumentasi_pesawat', function (Blueprint $table) {
+            $table->unsignedBigInteger('lokasi_perbaikan_id')->nullable(false)->change();
         });
     }
 

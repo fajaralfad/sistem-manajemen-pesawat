@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\TechnicianHistory;
+use App\Models\User;
+use App\Models\Document;
+use App\Models\LokasiPerbaikan;
 
 class ManagerController extends Controller
 {
@@ -19,23 +22,19 @@ class ManagerController extends Controller
         return view('manager.edit-profile', compact('user'));
     }
 
-    public function riwayatTeknisi(){
-        $riwayat = DB::table('dokumentasi_pesawat')
-        ->join('users', 'dokumentasi_pesawat.id_teknisi', '=', 'users.id')
-        ->select('dokumentasi_pesawat.*', 'users.name')
-        ->get();
-        $histories = TechnicianHistory::with(['technician', 'plane'])->get();
-
-        return view('manager.riwayat-teknisi.index', compact('riwayat','histories'));
+    public function riwayatTeknisi()
+    {
+        $documentations = Document::with('lokasiPerbaikan', 'pesawat')->get();
+        $lokasiPerbaikanList = LokasiPerbaikan::all();
+        return view('manager.riwayat-teknisi.index', compact('documentations', 'lokasiPerbaikanList'));
     }
 
-    public function showRiwayatTeknisi($id){
-        $riwayat = DB::table('dokumentasi_pesawat')
-        ->join('users', 'dokumentasi_pesawat.id_teknisi', '=', 'users.id')
-        ->select('dokumentasi_pesawat.*', 'users.name')
-        ->where('dokumentasi_pesawat.id_teknisi', $id)
-        ->get();
-        return view('manager.riwayat-teknisi', compact('riwayat'));
+    public function showRiwayatTeknisi($id)
+    {
+        $documentations = Document::where('id_teknisi', $id)->with('lokasiPerbaikan', 'pesawat')->get();
+        $lokasiPerbaikanList = LokasiPerbaikan::all();
+        $technician = User::findOrFail($id);
+        return view('manager.riwayat-teknisi.index', compact('documentations', 'lokasiPerbaikanList', 'technician'));
     }
 
     /**

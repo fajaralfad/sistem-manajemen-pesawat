@@ -18,6 +18,17 @@
     <form action="{{ route('document.update', $documentation->id_dokumentasi) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+
+        <div class="form-group mt-2">
+            <label for="pesawat_id">Nama Pesawat:</label>
+            <select class="form-control" id="pesawat_id" name="pesawat_id" required>
+                <option value="" disabled>Pilih Nama Pesawat</option>
+                @foreach($pesawatList as $pesawat)
+                    <option value="{{ $pesawat->id_pesawat }}" {{ $documentation->pesawat_id == $pesawat->id_pesawat ? 'selected' : '' }}>{{ $pesawat->nama_maskapai }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="form-group mt-2">
             <label for="jadwal_perbaikan">Jadwal perbaikan:</label>
             <div class="row">
@@ -55,10 +66,10 @@
 
         <div class="form-group mt-2">
             <label for="lokasi_perbaikan">Lokasi Perbaikan:</label>
-            <select class="form-control" id="lokasi_perbaikan" name="lokasi_perbaikan" required>
+            <select class="form-control" id="lokasi_perbaikan" name="lokasi_perbaikan_id" required>
                 <option value="" disabled>Pilih Lokasi Perbaikan</option>
                 @foreach($lokasiPerbaikanList as $lokasi)
-                    <option value="{{ $lokasi->lokasi }}" {{ $documentation->lokasi_perbaikan == $lokasi->lokasi ? 'selected' : '' }}>{{ $lokasi->lokasi }}</option>
+                    <option value="{{ $lokasi->id }}" {{ $documentation->lokasi_perbaikan_id == $lokasi->id ? 'selected' : '' }}>{{ $lokasi->lokasi }}</option>
                 @endforeach
             </select>
         </div>
@@ -66,10 +77,10 @@
         <div class="form-group">
             <label for="status_perbaikan">Status:</label>
             <select class="form-control" id="status_perbaikan" name="status_perbaikan" required>
-                <option value="kecil" {{ $documentation->status_perbaikan == 'kecil' ? 'selected' : '' }}>Kecil</option>
-                <option value="sedang" {{ $documentation->status_perbaikan == 'sedang' ? 'selected' : '' }}>Sedang</option>
-                <option value="parah" {{ $documentation->status_perbaikan == 'parah' ? 'selected' : '' }}>Parah</option>
-                <option value="sangat_parah" {{ $documentation->status_perbaikan == 'sangat_parah' ? 'selected' : '' }}>Sangat Parah</option>
+                <option value="pending" {{ $documentation->status_perbaikan == 'pending' ? 'selected' : '' }}>Pending</option>
+                <option value="on_progress" {{ $documentation->status_perbaikan == 'on_progress' ? 'selected' : '' }}>On Progress</option>
+                <option value="selesai" {{ $documentation->status_perbaikan == 'selesai' ? 'selected' : '' }}>Selesai</option>
+                <option value="kesalahan" {{ $documentation->status_perbaikan == 'kesalahan' ? 'selected' : '' }}>Kesalahan</option>
             </select>
         </div>
 

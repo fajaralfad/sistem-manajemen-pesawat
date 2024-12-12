@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pesawat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class PesawatController extends Controller
 {

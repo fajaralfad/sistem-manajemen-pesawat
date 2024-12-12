@@ -15,8 +15,14 @@
         </div>
     @endif
 
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <!-- Tombol untuk membuka modal -->
-    <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#uploadModal"><i data-feather="list"></i> Upload Dokumentasi</button>
+    <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#uploadModal">Upload Dokumentasi</button>
 
     <!-- Modal untuk upload dokumentasi -->
     <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
@@ -65,10 +71,10 @@
 
                         <div class="form-group mt-2">
                             <label for="lokasi_perbaikan">Lokasi Perbaikan:</label>
-                            <select class="form-control" id="lokasi_perbaikan" name="lokasi_perbaikan" required>
+                            <select class="form-control" id="lokasi_perbaikan" name="lokasi_perbaikan_id" required>
                                 <option value="" disabled selected>Pilih Lokasi Perbaikan</option>
                                 @foreach($lokasiPerbaikanList as $lokasi)
-                                    <option value="{{ $lokasi->lokasi }}">{{ $lokasi->lokasi }}</option>
+                                    <option value="{{ $lokasi->id }}">{{ $lokasi->lokasi }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -76,10 +82,10 @@
                         <div class="form-group">
                             <label for="status_perbaikan">Status:</label>
                             <select class="form-control" id="status_perbaikan" name="status_perbaikan" required>
-                                <option value="kecil">Kecil</option>
-                                <option value="sedang">Sedang</option>
-                                <option value="parah">Parah</option>
-                                <option value="sangat_parah">Sangat Parah</option>
+                                <option value="pending">Pending</option>
+                                <option value="on_progress">On Progress</option>
+                                <option value="selesai">Selesai</option>
+                                <option value="kesalahan">Kesalahan</option>
                             </select>
                         </div>
                         <div class="form-group mt-2">
@@ -110,6 +116,7 @@
                     <th>Gambar dokumentasi</th>
                     <th>Kerusakan</th>
                     <th>Status</th>
+                    <th>Laporan</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -126,6 +133,14 @@
                         <td>{{ $documentation->kerusakan }}</td>
                         <td>{{ $documentation->status_perbaikan }}</td>
                         <td>{{ $documentation->laporan }}</td>
+                        <td>
+                            <a href="{{ route('document.edit', $documentation->id_dokumentasi) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('document.destroy', $documentation->id_dokumentasi) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

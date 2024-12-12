@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use App\Models\TechnicianHistory;
 
 class ManagerController extends Controller
 {
@@ -23,7 +24,9 @@ class ManagerController extends Controller
         ->join('users', 'dokumentasi_pesawat.id_teknisi', '=', 'users.id')
         ->select('dokumentasi_pesawat.*', 'users.name')
         ->get();
-        return view('manager.riwayat-teknisi.index', compact('riwayat'));
+        $histories = TechnicianHistory::with(['technician', 'plane'])->get();
+
+        return view('manager.riwayat-teknisi.index', compact('riwayat','histories'));
     }
 
     public function showRiwayatTeknisi($id){

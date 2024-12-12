@@ -12,6 +12,9 @@
     <!-- Tombol Tambah Pesawat -->
     <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addPesawatModal">Tambah Pesawat</button>
 
+    <!-- Tombol Print to PDF -->
+    <a href="{{ route('admin.pesawat.print') }}" class="btn btn-secondary mb-3">Print to PDF</a>
+
     <!-- Tabel Pesawat -->
     <table id="usersTable" class="table table-bordered">
         <thead>
@@ -39,32 +42,30 @@
                 <td>{{ $pesawat->jenis_pesawat }}</td>
                 <td>{{ $pesawat->kapasitas_penumpang }}</td>
                 <td>
-                    
-                
-    <!-- Edit button -->
-    <a href="{{ route('admin.pesawat.edit', $pesawat->id_pesawat) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <!-- Edit button -->
+                    <a href="{{ route('admin.pesawat.edit', $pesawat->id_pesawat) }}" class="btn btn-warning btn-sm">Edit</a>
 
-    <!-- Delete button with modal trigger -->
-    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletePesawatModal{{ $pesawat->id_pesawat }}">Delete</button>
+                    <!-- Delete button with modal trigger -->
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletePesawatModal{{ $pesawat->id_pesawat }}">Delete</button>
 
-    <!-- Modal Konfirmasi Hapus -->
-    <div class="modal fade" id="deletePesawatModal{{ $pesawat->id_pesawat }}" tabindex="-1" aria-labelledby="deletePesawatModalLabel{{ $pesawat->id_pesawat }}" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deletePesawatModalLabel{{ $pesawat->id_pesawat }}">Konfirmasi Hapus</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus pesawat dengan nomor registrasi <b>{{ $pesawat->no_registrasi }}</b> dan maskapai <b>{{ $pesawat->nama_maskapai }}</b>?
-                    Data yang dihapus tidak dapat dikembalikan.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <form action="{{ route('admin.pesawat.destroy', $pesawat->id_pesawat) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    <!-- Modal Konfirmasi Hapus -->
+                    <div class="modal fade" id="deletePesawatModal{{ $pesawat->id_pesawat }}" tabindex="-1" aria-labelledby="deletePesawatModalLabel{{ $pesawat->id_pesawat }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deletePesawatModalLabel{{ $pesawat->id_pesawat }}">Konfirmasi Hapus</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Apakah Anda yakin ingin menghapus pesawat dengan nomor registrasi <b>{{ $pesawat->no_registrasi }}</b> dan maskapai <b>{{ $pesawat->nama_maskapai }}</b>?
+                                    Data yang dihapus tidak dapat dikembalikan.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                    <form action="{{ route('admin.pesawat.destroy', $pesawat->id_pesawat) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Hapus</button>
                                     </form>
                                 </div>
                             </div>

@@ -10,7 +10,7 @@ use App\Http\Controllers\PesawatController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JadwalPemeliharaanController;
 use App\Http\Controllers\DocumentController;
-
+use App\Http\Controllers\TechnicianHistoryController;
 // Redirect root to login
 Route::get('/', function () {
     return redirect()->route('login');
@@ -35,8 +35,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('index', [UserController::class, 'index'])->name('index');
     
     // Pesawat management for admin
-    Route::get('pesawat', [PesawatController::class, 'index'])->name('index');
-    Route::post('pesawat', [PesawatController::class, 'store'])->name('store');
+    Route::get('pesawat', [PesawatController::class, 'index'])->name('pesawat.index');
+    Route::post('pesawat', [PesawatController::class, 'store'])->name('pesawat.store');
+    Route::get('pesawat/print', [PesawatController::class, 'printPDF'])->name('pesawat.print');
     Route::get('pesawat/{id}', [PesawatController::class, 'show'])->name('show');
     Route::get('pesawat/{id}/edit', [PesawatController::class, 'edit'])->name('pesawat.edit');
     Route::put('pesawat/{id}', [PesawatController::class, 'update'])->name('pesawat.update');
@@ -57,6 +58,7 @@ Route::middleware(['auth', 'role:manager'])->prefix('manager')->name('manager.')
     
     Route::get('profile/edit', [ManagerController::class, 'editProfile'])->name('profile.edit');
     Route::post('profile/update', [ManagerController::class, 'updateProfile'])->name('profile.update');
+
 
     // Jadwal Pemeliharaan routes
     Route::prefix('jadwal')->name('jadwal.')->group(function () {
@@ -94,6 +96,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/upload-dokumentasi', [DocumentController::class, 'create'])->name('upload-dokumentasi');
     Route::post('/save-documentation', [DocumentController::class, 'store'])->name('save-documentation');
+    Route::get('document/{id_dokumentasi}/edit', [DocumentController::class, 'edit'])->name('document.edit');
+    Route::put('document/{id_dokumentasi}', [DocumentController::class, 'update'])->name('document.update');
+    Route::delete('document/{id_dokumentasi}', [DocumentController::class, 'destroy'])->name('document.destroy');
 });
 
 

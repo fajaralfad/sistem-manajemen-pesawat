@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pesawat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class PesawatController extends Controller
 {
@@ -12,6 +13,12 @@ class PesawatController extends Controller
     {
         $pesawatList = Pesawat::all(); // Mengambil semua data pesawat dari database
         return view('pesawat.index', compact('pesawatList'));
+    }
+    public function printPDF()
+    {
+        $pesawatList = Pesawat::all();
+        $pdf = PDF::loadView('pesawat.pdf', compact('pesawatList'));
+        return $pdf->download('daftar-pesawat.pdf');
     }
 
     // Menampilkan form untuk menambah pesawat
@@ -119,4 +126,6 @@ class PesawatController extends Controller
 
         return redirect()->route('pesawat.index')->with('success', 'Pesawat berhasil dihapus');
     }
+
+   
 }

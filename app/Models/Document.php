@@ -11,6 +11,7 @@ class Document extends Model
 
     // Nama tabel yang ada di database
     protected $table = 'dokumentasi_pesawat'; // Ganti dengan nama tabel yang sesuai
+    protected $primaryKey = 'id_dokumentasi';
 
     // Kolom yang dapat diisi (mass assignable)
     protected $fillable = [
@@ -20,7 +21,7 @@ class Document extends Model
         'jadwal_perbaikan',
         'waktu_perbaikan',
         'jenis_perbaikan',
-        'lokasi_perbaikan',
+        'lokasi_perbaikan_id',
         'status_perbaikan',
         'waktu_perbaikan',
         'gambar_dokumentasi',

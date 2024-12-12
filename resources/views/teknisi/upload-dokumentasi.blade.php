@@ -16,7 +16,7 @@
     @endif
 
     <!-- Tombol untuk membuka modal -->
-    <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#uploadModal">Upload Dokumentasi</button>
+    <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#uploadModal"><i data-feather="list"></i> Upload Dokumentasi</button>
 
     <!-- Modal untuk upload dokumentasi -->
     <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
@@ -65,7 +65,12 @@
 
                         <div class="form-group mt-2">
                             <label for="lokasi_perbaikan">Lokasi Perbaikan:</label>
-                            <input type="text" class="form-control" id="lokasi_perbaikan" name="lokasi_perbaikan" required>
+                            <select class="form-control" id="lokasi_perbaikan" name="lokasi_perbaikan" required>
+                                <option value="" disabled selected>Pilih Lokasi Perbaikan</option>
+                                @foreach($lokasiPerbaikanList as $lokasi)
+                                    <option value="{{ $lokasi->lokasi }}">{{ $lokasi->lokasi }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group">

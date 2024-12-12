@@ -68,6 +68,11 @@ Route::middleware(['auth', 'role:manager'])->prefix('manager')->name('manager.')
         Route::put('/{id}', [JadwalPemeliharaanController::class, 'update'])->name('update'); // Proses update jadwal
         Route::delete('/{id}', [JadwalPemeliharaanController::class, 'destroy'])->name('destroy'); // Hapus jadwal
     });
+
+    Route::prefix('riwayat-teknisi')->name('riwayat-teknisi.')->group(function () {
+        Route::get('/', [ManagerController::class, 'riwayatTeknisi'])->name('index');
+        Route::get('/{id}', [ManagerController::class, 'showRiwayatTeknisi'])->name('show');
+    });
 });
 
 // Routes for Teknisi

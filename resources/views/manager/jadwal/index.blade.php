@@ -8,10 +8,9 @@
 @section('content')
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="display-6">Daftar Jadwal Pemeliharaan</h1>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createJadwalModal">Tambah Jadwal Baru</button>
+        <h1 class="display-6"><i data-feather="list" width="50" height="50"></i> Daftar Jadwal Pemeliharaan</h1>
     </div>
-
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createJadwalModal"><i data-feather="plus" width="20" height="20"></i> Tambah Jadwal Baru</button>
     <!-- Modal Tambah Jadwal -->
     <div class="modal fade" id="createJadwalModal" tabindex="-1" aria-labelledby="createJadwalModalLabel" aria-hidden="true">
         <div class="modal-dialog">

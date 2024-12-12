@@ -4,18 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Document;
+use App\Models\LokasiPerbaikan;
 
 class DocumentController extends Controller
 {
     public function index()
     {
-        $documentations = Document::all(); // Fetch all documentations
-        return view('upload-dokumentasi', compact('documentations'));
+        $documentations = Document::all(); 
+        $lokasiPerbaikanList = LokasiPerbaikan::all(); 
+        return view('teknisi.upload-dokumentasi', compact('documentations','lokasiPerbaikanList')); // Send data to the view
     }
     public function create()
     {
-        $documentations = Document::all(); // Mengambil semua dokumentasi
-        return view('teknisi.upload-dokumentasi', compact('documentations')); // Mengirimkan data ke view
+        $documentations = Document::all(); 
+        $lokasiPerbaikanList = LokasiPerbaikan::all(); 
+        return view('teknisi.upload-dokumentasi', compact('documentations', 'lokasiPerbaikanList')); // Mengirimkan data ke view
     }
 
     public function store(Request $request)

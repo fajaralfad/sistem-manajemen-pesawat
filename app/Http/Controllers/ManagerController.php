@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class ManagerController extends Controller
 {
@@ -15,6 +16,23 @@ class ManagerController extends Controller
     {
         $user = Auth::user();
         return view('manager.edit-profile', compact('user'));
+    }
+
+    public function riwayatTeknisi(){
+        $riwayat = DB::table('dokumentasi_pesawat')
+        ->join('users', 'dokumentasi_pesawat.id_teknisi', '=', 'users.id')
+        ->select('dokumentasi_pesawat.*', 'users.name')
+        ->get();
+        return view('manager.riwayat-teknisi.index', compact('riwayat'));
+    }
+
+    public function showRiwayatTeknisi($id){
+        $riwayat = DB::table('dokumentasi_pesawat')
+        ->join('users', 'dokumentasi_pesawat.id_teknisi', '=', 'users.id')
+        ->select('dokumentasi_pesawat.*', 'users.name')
+        ->where('dokumentasi_pesawat.id_teknisi', $id)
+        ->get();
+        return view('manager.riwayat-teknisi', compact('riwayat'));
     }
 
     /**

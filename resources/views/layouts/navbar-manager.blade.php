@@ -10,7 +10,7 @@
                     <a class="nav-link {{ request()->routeIs('manager.jadwal.index') ? 'active' : '' }}" href="{{ route('manager.jadwal.index') }}">Jadwal Pemeliharaan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Riwayat Teknisi</a>
+                    <a class="nav-link" href="{{route('manager.riwayat-teknisi.index')}}">Riwayat Teknisi</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

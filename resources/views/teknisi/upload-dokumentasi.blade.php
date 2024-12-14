@@ -120,6 +120,7 @@
                 <tr>
                     <th>No.</th>
                     <th>Id Dokumentasi</th>
+                    <th>Id Jadwal</th>
                     <th>Nama Pesawat</th>
                     <th>Jadwal perbaikan</th>
                     <th>Waktu perbaikan</th>
@@ -137,6 +138,7 @@
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{ $documentation->id_dokumentasi}}</td>
+                        <td>{{$documentation->id_jadwal}}</td>
                         <td>{{ $documentation->pesawat->nama_maskapai }}</td> 
                         <td>{{$documentation->jadwal_perbaikan}}</td>
                         <td>{{$documentation->waktu_perbaikan}}</td>

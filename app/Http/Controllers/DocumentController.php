@@ -61,6 +61,7 @@ class DocumentController extends Controller
                 'kerusakan' => $request->kerusakan,
                 'laporan' => $request->laporan,
                 'pesawat_id' => $request->pesawat_id,
+                'id_jadwal'=>$request->id_jadwal,
             ]);
             Log::info('Data saved to database');
 
@@ -122,6 +123,8 @@ class DocumentController extends Controller
                 'kerusakan' => $request->kerusakan,
                 'laporan' => $request->laporan,
                 'pesawat_id' => $request->pesawat_id,
+                'id_jadwal'=>$request->id_jadwal,
+
             ]);
             Log::info('Data updated in database');
 

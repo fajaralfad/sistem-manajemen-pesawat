@@ -42,16 +42,6 @@
                             <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3" required></textarea>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select name="status" id="status" class="form-select" required>
-                                <option value="scheduled">scheduled</option>
-                                <option value="in_progress">in_progress</option>
-                                <option value="completed">completed</option>
-                                <option value="cancelled">cancelled</option>
-                            </select>
-                        </div>
-
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-primary">Tambah</button>
@@ -71,7 +61,6 @@
                     <th>Pesawat</th>
                     <th>Jadwal</th>
                     <th>Deskripsi</th>
-                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -82,7 +71,6 @@
                     <td>{{ $item->pesawat->nama_maskapai }}</td>
                     <td>{{ $item->jadwal_pemeliharaan }}</td>
                     <td>{{ $item->deskripsi }}</td>
-                    <td class="text-capitalize">{{ $item->status }}</td>
                     <td>
     <a href="{{ route('manager.jadwal.edit', $item->id_jadwal_pemeliharaan) }}" class="btn btn-sm btn-warning">Edit</a>
     <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ $item->id_jadwal_pemeliharaan }}">Delete</button>

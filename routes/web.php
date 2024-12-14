@@ -83,6 +83,8 @@ Route::middleware(['auth', 'role:teknisi'])->prefix('teknisi')->name('teknisi.')
     Route::get('upload-dokumentasi', [DocumentController::class, 'create'])->name('upload-dokumentasi');
     Route::get('profile/edit', [TeknisiController::class, 'editProfile'])->name('profile.edit');
     Route::post('profile/update', [TeknisiController::class, 'updateProfile'])->name('profile.update');
+
+    // Route::get('jadwal-pemeliharaan'')
 });
 
 // Pesawat routes (accessible for authenticated users with appropriate role)
